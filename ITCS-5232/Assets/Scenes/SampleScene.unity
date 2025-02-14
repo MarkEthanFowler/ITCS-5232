@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b93642c86b618d46a5fae9df7bfd585, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b93642c86b618d46a5fae9df7bfd585, type: 3}
       propertyPath: m_LocalPosition.z
@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: thor-god
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 5b93642c86b618d46a5fae9df7bfd585, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c4d3995d16e185144a734fe4f5e8459b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -206,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 68546055}
+  animator: {fileID: 68546054}
 --- !u!54 &68546053
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -214,7 +219,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68546051}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 18000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -230,9 +235,14 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
+  m_Interpolate: 1
+  m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!95 &68546054 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5b93642c86b618d46a5fae9df7bfd585, type: 3}
+  m_PrefabInstance: {fileID: 68546050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &68546055 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5b93642c86b618d46a5fae9df7bfd585, type: 3}
@@ -257,10 +267,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.71
-  m_Height: 5.18
+  m_Radius: 0.83
+  m_Height: 5.11
   m_Direction: 1
-  m_Center: {x: 0, y: 2.5, z: 0}
+  m_Center: {x: 0, y: 2.36, z: 0}
 --- !u!1 &138340229
 GameObject:
   m_ObjectHideFlags: 0
