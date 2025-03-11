@@ -10,15 +10,19 @@ public class EnemyManager : MonoBehaviour
     private float rotationSpeed;
     private float radiusOfSatisfaction;
     private float attackHitRange;
+    private float enemySpeed;
+    Rigidbody rigidbody;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        rigidbody = GetComponent<Rigidbody>();
         SetTarget(GameManager.instance.player.playerTransform);
         rotationSpeed = 5f;
         radiusOfSatisfaction = 2.5f;
         attackHitRange = 2f;
+        enemySpeed = 1f;
     }
 
     // Update is called once per frame
@@ -44,6 +48,9 @@ public class EnemyManager : MonoBehaviour
             Vector3 faceTarget = target.position - trans.position;
             Quaternion targetRotation = Quaternion.LookRotation(faceTarget);
             trans.rotation = Quaternion.Lerp(trans.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            Vector3 movementDirection = (target.position - trans.position).normalized;
+            trans.position += (faceTarget * Time.deltaTime * enemySpeed);
         }
     }
 

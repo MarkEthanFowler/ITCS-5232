@@ -433,6 +433,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2597225659263843228, guid: f830f6b1e7a8d3a4ab4c0606a96c5f85, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 3205469957615439393, guid: f830f6b1e7a8d3a4ab4c0606a96c5f85, type: 3}
       propertyPath: m_Name
       value: Goblin
@@ -451,7 +455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814019380575315981, guid: f830f6b1e7a8d3a4ab4c0606a96c5f85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6814019380575315981, guid: f830f6b1e7a8d3a4ab4c0606a96c5f85, type: 3}
       propertyPath: m_LocalPosition.z
