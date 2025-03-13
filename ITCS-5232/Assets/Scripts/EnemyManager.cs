@@ -6,12 +6,15 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private Transform trans;
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform sword;
     private Transform target;
     private float rotationSpeed;
     private float radiusOfSatisfaction;
     private float attackHitRange;
     private float enemySpeed;
     Rigidbody rigidbody;
+    private float currentHealth;
+    private float maxHealth;
 
 
     // Start is called before the first frame update
@@ -23,6 +26,8 @@ public class EnemyManager : MonoBehaviour
         radiusOfSatisfaction = 2.5f;
         attackHitRange = 2f;
         enemySpeed = 1f;
+        currentHealth = 100;
+        maxHealth = 100;
     }
 
     // Update is called once per frame
@@ -71,4 +76,18 @@ public class EnemyManager : MonoBehaviour
             animator.ResetTrigger("Attack");
         }
     }
+
+    public void CheckHit()
+    {
+        if(target != null)
+        {
+            if (Vector3.Distance(trans.position, target.position) < attackHitRange)
+            {
+                GameManager.instance.player.ChangeHealth(-50);
+            }
+        }
+        
+    }
+
+
 }

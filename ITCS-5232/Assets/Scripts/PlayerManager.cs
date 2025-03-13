@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,21 +9,32 @@ public class PlayerManager : MonoBehaviour
     public Transform playerTransform;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform hammerHead;
 
     Rigidbody characterRigidbody;
 
     private float movementSpeed;
     private float rotationSpeed;
 
+    private float currentHealth;
+    private float maxHealth;
+
     private void Start()
     {
         characterRigidbody = GetComponent<Rigidbody>();
         movementSpeed = 5f;
         rotationSpeed = 5f;
+        currentHealth = 50;
+        maxHealth = 100;
+
+        ChangeHealth(0);
+
+        GameManager.instance.player = this;
     }
 
     private void FixedUpdate()
     {
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
@@ -51,6 +63,29 @@ public class PlayerManager : MonoBehaviour
         {
             animator.SetTrigger("Attack");
         }
+        
+    }
+
+    public void ChangeHealth(int hp)
+    {
+        currentHealth += hp;
+        if(currentHealth <= 0)
+        {
+            Destroy(this);
+            Destroy(gameObject);
+        }
+
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        GUIManager.instance.UpdateHealthBar(currentHealth / maxHealth);
+    }
+
+    public void CheckHit()
+    {
         
     }
 }

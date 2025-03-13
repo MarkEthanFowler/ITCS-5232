@@ -354,6 +354,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.55f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/EnemyManager.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/GUIManager.cs"
 "Assets/Scripts/PlayerManager.cs"
 "Assets/TriForge Assets/Fantasy Worlds - DEMO Common Files/Scripts/TF_FW_WindController.cs"
 -langversion:9.0
