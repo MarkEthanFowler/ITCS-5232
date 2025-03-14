@@ -38,6 +38,7 @@ public class PlayerManager : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
+        
         //Convert the user input into a directional vector
         Vector3 movementDirection = new Vector3(h, 0f, v);
 
@@ -52,6 +53,12 @@ public class PlayerManager : MonoBehaviour
             animator.SetFloat("Speed", 1f);
             animator.ResetTrigger("Attack");
         }
+
+        if (h == 0 && v == 0)
+        {
+            return;
+        }
+
 
         //apply the direction to the position of the character multiplying it by its move speed and delta time
         characterRigidbody.MovePosition(playerTransform.position + movementDirection * Time.deltaTime * movementSpeed);
@@ -84,8 +91,12 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.UpdateHealthBar(currentHealth / maxHealth);
     }
 
-    public void CheckHit()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log("Hit");
+        if (other.CompareTag("Enemy"))
+        {
+            
+        }
     }
 }

@@ -83,7 +83,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (Vector3.Distance(trans.position, target.position) < attackHitRange)
             {
-                GameManager.instance.player.ChangeHealth(-50);
+                GameManager.instance.player.ChangeHealth(-5);
             }
         }
         
