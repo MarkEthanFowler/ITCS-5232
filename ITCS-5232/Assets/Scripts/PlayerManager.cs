@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         characterRigidbody = GetComponent<Rigidbody>();
-        movementSpeed = 5f;
+        movementSpeed = 10f;
         rotationSpeed = 5f;
         currentHealth = 50;
         maxHealth = 100;
@@ -54,6 +54,11 @@ public class PlayerManager : MonoBehaviour
             animator.ResetTrigger("Attack");
         }
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            animator.SetTrigger("Attack");
+        }
+
         if (h == 0 && v == 0)
         {
             return;
@@ -66,10 +71,7 @@ public class PlayerManager : MonoBehaviour
         Quaternion faceDirection = Quaternion.LookRotation(movementDirection);
         playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, faceDirection, rotationSpeed * Time.deltaTime);
 
-        if(Input.GetKey(KeyCode.Space))
-        {
-            animator.SetTrigger("Attack");
-        }
+        
         
     }
 
