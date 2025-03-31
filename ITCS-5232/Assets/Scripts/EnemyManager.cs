@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,11 +24,15 @@ public class EnemyManager : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         SetTarget(GameManager.instance.player.playerTransform);
         rotationSpeed = 5f;
-        radiusOfSatisfaction = 2.5f;
+        radiusOfSatisfaction = 5f;
         attackHitRange = 2f;
         enemySpeed = 1f;
         currentHealth = 100;
         maxHealth = 100;
+
+        ChangeHealthOfEnemy(0);
+        GameManager.instance.enemyList.Add(this);
+        GameManager.instance.enemyManager = GameManager.instance.enemyList[GameManager.instance.enemyList.IndexOf(this)];
     }
 
     // Update is called once per frame
@@ -35,6 +40,7 @@ public class EnemyManager : MonoBehaviour
     {
         LookAtTarget();
         EnemyAction();
+        
     }
 
     public void SetTarget(Transform t)
@@ -89,5 +95,18 @@ public class EnemyManager : MonoBehaviour
         
     }
 
+    public void ChangeHealthOfEnemy(int hp)
+    {
+        currentHealth += hp;
 
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        if(currentHealth <= 0)
+        {
+            Destroy(this);
+            Destroy(gameObject);
+        }
+    }
 }

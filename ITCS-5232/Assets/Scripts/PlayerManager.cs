@@ -19,13 +19,17 @@ public class PlayerManager : MonoBehaviour
     private float currentHealth;
     private float maxHealth;
 
+    private float attackDistance;
+    
+
     private void Start()
     {
         characterRigidbody = GetComponent<Rigidbody>();
         movementSpeed = 10f;
         rotationSpeed = 5f;
-        currentHealth = 50;
+        currentHealth = 100;
         maxHealth = 100;
+        attackDistance = 5f;
 
         ChangeHealth(0);
 
@@ -93,12 +97,19 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.UpdateHealthBar(currentHealth / maxHealth);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void CheckHitOfPlayer()
     {
-        Debug.Log("Hit");
-        if (other.CompareTag("Enemy"))
+        if(GameManager.instance.enemyManager != null)
         {
+            for(int i = 0; i < GameManager.instance.enemyList.Capacity; i++)
+            {
+                if (Vector3.Distance(GameManager.instance.enemyList[i].transform.position, playerTransform.position) < attackDistance)
+                {
+                    GameManager.instance.enemyList[i].ChangeHealthOfEnemy(-100);
+                }
+            }
             
         }
     }
+    
 }
