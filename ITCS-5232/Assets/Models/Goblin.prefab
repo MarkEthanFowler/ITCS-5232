@@ -22208,7 +22208,7 @@ GameObject:
   - component: {fileID: 2779680845712247851}
   m_Layer: 0
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22316,6 +22316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trans: {fileID: 6814019380575315981}
   animator: {fileID: 5866666021909216657}
+  sword: {fileID: 0}
 --- !u!1 &3251599145689043617
 GameObject:
   m_ObjectHideFlags: 0

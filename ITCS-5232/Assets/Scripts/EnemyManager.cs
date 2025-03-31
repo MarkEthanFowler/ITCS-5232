@@ -16,6 +16,7 @@ public class EnemyManager : MonoBehaviour
     Rigidbody rigidbody;
     private float currentHealth;
     private float maxHealth;
+    private int damage;
 
 
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class EnemyManager : MonoBehaviour
         enemySpeed = 1f;
         currentHealth = 100;
         maxHealth = 100;
+        damage = -5;
 
         ChangeHealthOfEnemy(0);
         GameManager.instance.enemyList.Add(this);
@@ -89,7 +91,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (Vector3.Distance(trans.position, target.position) < attackHitRange)
             {
-                GameManager.instance.player.ChangeHealth(-5);
+                GameManager.instance.player.ChangeHealth(damage);
             }
         }
         

@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     private float maxHealth;
 
     private float attackDistance;
-    
+    public int damage;
 
     private void Start()
     {
@@ -30,6 +30,8 @@ public class PlayerManager : MonoBehaviour
         currentHealth = 100;
         maxHealth = 100;
         attackDistance = 5f;
+
+        damage = -50;
 
         ChangeHealth(0);
 
@@ -105,7 +107,7 @@ public class PlayerManager : MonoBehaviour
             {
                 if (Vector3.Distance(GameManager.instance.enemyList[i].transform.position, playerTransform.position) < attackDistance)
                 {
-                    GameManager.instance.enemyList[i].ChangeHealthOfEnemy(-100);
+                    GameManager.instance.enemyList[i].ChangeHealthOfEnemy(damage);
                 }
             }
             
