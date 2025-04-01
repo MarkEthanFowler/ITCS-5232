@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour
         enemySpeed = 1f;
         currentHealth = 100;
         maxHealth = 100;
-        damage = -5;
+        damage = -50;
 
         ChangeHealthOfEnemy(0);
         GameManager.instance.enemyList.Add(this);

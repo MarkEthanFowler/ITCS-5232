@@ -359,6 +359,8 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GUIManager.cs"
 "Assets/Scripts/PlayerManager.cs"
+"Assets/Scripts/UI/LoseMenu.cs"
+"Assets/Scripts/UI/MainMenu.cs"
 -langversion:9.0
 /deterministic
 /optimize+

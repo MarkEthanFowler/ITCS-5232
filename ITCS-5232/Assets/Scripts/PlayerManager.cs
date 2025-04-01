@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class PlayerManager : MonoBehaviour
 
     private float attackDistance;
     public int damage;
+
+    public string levelName;
 
     private void Start()
     {
@@ -86,8 +89,9 @@ public class PlayerManager : MonoBehaviour
         currentHealth += hp;
         if(currentHealth <= 0)
         {
-            Destroy(this);
-            Destroy(gameObject);
+            
+            SceneManager.LoadScene(levelName);
+
         }
 
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
