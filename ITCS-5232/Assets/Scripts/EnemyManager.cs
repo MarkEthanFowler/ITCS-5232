@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private Transform trans;
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform sword;
+    [SerializeField] private GameObject powerUpPrefab;
     private Transform target;
     private float rotationSpeed;
     private float radiusOfSatisfaction;
@@ -17,6 +17,8 @@ public class EnemyManager : MonoBehaviour
     private float currentHealth;
     private float maxHealth;
     private int damagePlayer;
+    private float yOffset;
+
 
 
     // Start is called before the first frame update
@@ -109,6 +111,8 @@ public class EnemyManager : MonoBehaviour
             Destroy(this);
             Destroy(gameObject);
             GameManager.instance.enemyList.Remove(this);
+            yOffset = trans.position.y * 0.75f;
+            Instantiate(powerUpPrefab, (trans.position + new Vector3(0f, yOffset, 0f)), Quaternion.identity);
         }
     }
 }

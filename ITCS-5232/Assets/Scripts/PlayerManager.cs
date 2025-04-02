@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour
         maxHealth = 100;
         attackDistance = 5f;
 
-        damageEnemy = -100;
+        damageEnemy = -25;
 
         ChangeHealth(0);
 
