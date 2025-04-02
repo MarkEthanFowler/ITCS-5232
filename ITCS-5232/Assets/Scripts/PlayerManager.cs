@@ -84,6 +84,10 @@ public class PlayerManager : MonoBehaviour
         
     }
 
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
     public void ChangeHealth(int hp)
     {
         currentHealth += hp;
@@ -91,6 +95,7 @@ public class PlayerManager : MonoBehaviour
         {
             
             SceneManager.LoadScene(levelName);
+
 
         }
 

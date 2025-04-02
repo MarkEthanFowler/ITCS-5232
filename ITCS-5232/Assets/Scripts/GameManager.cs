@@ -27,8 +27,7 @@ public class GameManager : MonoBehaviour
 
             //prevent the game object from getting destroyed
             DontDestroyOnLoad(gameObject);
-            //DontDestroyOnLoad(enemyPrefab);
-            //DontDestroyOnLoad(spawnPoint);
+            DontDestroyOnLoad(spawnPoint);
         }
         else//singleton exists already destroy this game object
         {
@@ -40,6 +39,14 @@ public class GameManager : MonoBehaviour
     {
         enemySpawnDelay = new WaitForSeconds(10f);
         StartCoroutine(RunEnemySpawnTimer());
+    }
+
+    public void Update()
+    {
+        if(player.GetCurrentHealth() == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public IEnumerator RunEnemySpawnTimer()
