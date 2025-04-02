@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     Rigidbody rigidbody;
     private float currentHealth;
     private float maxHealth;
-    private int damage;
+    private int damagePlayer;
 
 
     // Start is called before the first frame update
@@ -30,11 +30,10 @@ public class EnemyManager : MonoBehaviour
         enemySpeed = 1f;
         currentHealth = 100;
         maxHealth = 100;
-        damage = -50;
+        damagePlayer = -5;
 
         ChangeHealthOfEnemy(0);
-        GameManager.instance.enemyList.Add(this);
-        GameManager.instance.enemyManager = GameManager.instance.enemyList[GameManager.instance.enemyList.IndexOf(this)];
+        
     }
 
     // Update is called once per frame
@@ -91,7 +90,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (Vector3.Distance(trans.position, target.position) < attackHitRange)
             {
-                GameManager.instance.player.ChangeHealth(damage);
+                GameManager.instance.player.ChangeHealth(damagePlayer);
             }
         }
         
@@ -109,6 +108,7 @@ public class EnemyManager : MonoBehaviour
         {
             Destroy(this);
             Destroy(gameObject);
+            GameManager.instance.enemyList.Remove(this);
         }
     }
 }

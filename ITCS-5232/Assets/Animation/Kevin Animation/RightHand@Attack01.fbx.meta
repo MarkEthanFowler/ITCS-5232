@@ -457,7 +457,7 @@ ModelImporter:
       - time: 0.32349324
         functionName: CheckHitOfPlayer
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 9000000, guid: 5b93642c86b618d46a5fae9df7bfd585, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

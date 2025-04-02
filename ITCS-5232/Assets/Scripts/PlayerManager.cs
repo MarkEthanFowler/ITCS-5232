@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     private float maxHealth;
 
     private float attackDistance;
-    public int damage;
+    public int damageEnemy;
 
     public string levelName;
 
@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour
         maxHealth = 100;
         attackDistance = 5f;
 
-        damage = -50;
+        damageEnemy = -100;
 
         ChangeHealth(0);
 
@@ -63,7 +63,7 @@ public class PlayerManager : MonoBehaviour
             animator.ResetTrigger("Attack");
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             animator.SetTrigger("Attack");
         }
@@ -105,16 +105,16 @@ public class PlayerManager : MonoBehaviour
 
     public void CheckHitOfPlayer()
     {
-        if(GameManager.instance.enemyManager != null)
+        if (GameManager.instance.enemyList.Capacity == 0)
         {
-            for(int i = 0; i < GameManager.instance.enemyList.Capacity; i++)
+            return;
+        }
+        for (int i = 0; i < GameManager.instance.enemyList.Capacity; i++)
+        {
+            if (Vector3.Distance(GameManager.instance.enemyList[i].transform.position, playerTransform.position) < attackDistance)
             {
-                if (Vector3.Distance(GameManager.instance.enemyList[i].transform.position, playerTransform.position) < attackDistance)
-                {
-                    GameManager.instance.enemyList[i].ChangeHealthOfEnemy(damage);
-                }
+                GameManager.instance.enemyList[i].ChangeHealthOfEnemy(damageEnemy);
             }
-            
         }
     }
     

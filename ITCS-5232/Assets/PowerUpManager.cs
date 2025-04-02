@@ -10,7 +10,7 @@ public class PowerUpManager : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(this);
-            GameManager.instance.player.damage += -50;
+            GameManager.instance.player.damageEnemy += -50;
         }
     }
 }
