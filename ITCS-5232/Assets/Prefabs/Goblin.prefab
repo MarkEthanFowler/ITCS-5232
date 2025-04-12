@@ -22317,6 +22317,7 @@ MonoBehaviour:
   trans: {fileID: 6814019380575315981}
   animator: {fileID: 5866666021909216657}
   powerUpPrefab: {fileID: 6318904741341910224, guid: e861e1d8f95be374aa6c7001bca714cb, type: 3}
+  test: {fileID: 8300000, guid: 827ba2b0a06ac694a979d546ac7285cb, type: 3}
 --- !u!1 &3251599145689043617
 GameObject:
   m_ObjectHideFlags: 0

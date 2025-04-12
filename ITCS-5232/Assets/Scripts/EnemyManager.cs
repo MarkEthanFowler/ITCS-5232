@@ -18,7 +18,9 @@ public class EnemyManager : MonoBehaviour
     private float maxHealth;
     private int damagePlayer;
     private float yOffset;
-
+    private bool isDead;
+    public AudioClip test;
+    private WaitForSeconds discardBodyTimer;
 
 
     // Start is called before the first frame update
@@ -33,9 +35,10 @@ public class EnemyManager : MonoBehaviour
         currentHealth = 100;
         maxHealth = 100;
         damagePlayer = -5;
-
-        ChangeHealthOfEnemy(0);
         
+        ChangeHealthOfEnemy(0);
+        isDead = false;
+        discardBodyTimer = new WaitForSeconds(10f);
     }
 
     // Update is called once per frame
@@ -59,31 +62,45 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            Vector3 faceTarget = target.position - trans.position;
-            Quaternion targetRotation = Quaternion.LookRotation(faceTarget);
-            trans.rotation = Quaternion.Lerp(trans.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            if(isDead == false)
+            {
+                Vector3 faceTarget = target.position - trans.position;
+                Quaternion targetRotation = Quaternion.LookRotation(faceTarget);
+                trans.rotation = Quaternion.Lerp(trans.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            Vector3 movementDirection = (target.position - trans.position).normalized;
-            trans.position += (faceTarget * Time.deltaTime * enemySpeed);
+                Vector3 movementDirection = (target.position - trans.position).normalized;
+                trans.position += (faceTarget * Time.deltaTime * enemySpeed);
+            }
+            else
+            {
+                animator.SetTrigger("Dead");
+            }
         }
     }
 
     private void EnemyAction()
     {
-        if(target == null)
+        if(isDead == false)
         {
-            animator.SetFloat("Speed", 0f);
+            if (target == null)
+            {
+                animator.SetFloat("Speed", 0f);
+            }
+            else if (Vector3.Distance(trans.position, target.position) < radiusOfSatisfaction)
+            {
+                animator.SetFloat("Speed", 0f);
+                animator.SetTrigger("Attack");
+                //SFXManager.instance.enemyWepSwing.Play();
+            }
+            else
+            {
+                animator.SetFloat("Speed", 1f);
+                animator.ResetTrigger("Attack");
+            }
         }
-        else if(Vector3.Distance(trans.position, target.position) < radiusOfSatisfaction)
-        {
-            animator.SetFloat("Speed", 0f);
-            animator.SetTrigger("Attack");
-        }
-        else
-        {
-            animator.SetFloat("Speed", 1f);
-            animator.ResetTrigger("Attack");
-        }
+        
+
+
     }
 
     public void CheckHit()
@@ -92,7 +109,9 @@ public class EnemyManager : MonoBehaviour
         {
             if (Vector3.Distance(trans.position, target.position) < attackHitRange)
             {
+                SFXManager.instance.enemyWepHit.Play();
                 GameManager.instance.player.ChangeHealth(damagePlayer);
+                SFXManager.instance.playerHitSound[UnityEngine.Random.Range(0, SFXManager.instance.playerHitSound.Length)].Play();
             }
         }
         
@@ -108,11 +127,24 @@ public class EnemyManager : MonoBehaviour
         }
         if(currentHealth <= 0)
         {
-            Destroy(this);
-            Destroy(gameObject);
+            //Destroy(this);
+            //Destroy(gameObject);  
             GameManager.instance.enemyList.Remove(this);
+            animator.SetFloat("Speed", 0f);
+            animator.SetTrigger("Dead");
+            isDead = true;
             yOffset = trans.position.y * 0.75f;
             Instantiate(powerUpPrefab, (trans.position + new Vector3(0f, yOffset, 0f)), Quaternion.identity);
+            StartCoroutine(RunDiscardBodyTimer());
         }
+    }
+
+    public IEnumerator RunDiscardBodyTimer()
+    {
+        yield return discardBodyTimer;
+
+        Destroy(this);
+        Destroy(gameObject);
+
     }
 }

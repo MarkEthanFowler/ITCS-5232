@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour
         maxHealth = 100;
         attackDistance = 5f;
 
-        damageEnemy = -25;
+        damageEnemy = -100;
 
         ChangeHealth(0);
 
@@ -65,6 +65,8 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
+            //SFXManager.instance.playerAttackGrunt.Play();
+            //SFXManager.instance.playerWepSwing.Play();
             animator.SetTrigger("Attack");
         }
 
@@ -118,7 +120,9 @@ public class PlayerManager : MonoBehaviour
         {
             if (Vector3.Distance(GameManager.instance.enemyList[i].transform.position, playerTransform.position) < attackDistance)
             {
+                SFXManager.instance.playerWepHit.Play();
                 GameManager.instance.enemyList[i].ChangeHealthOfEnemy(damageEnemy);
+                SFXManager.instance.enemyHitSound[UnityEngine.Random.Range(0, SFXManager.instance.enemyHitSound.Length)].Play();
             }
         }
     }
