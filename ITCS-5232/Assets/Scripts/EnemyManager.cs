@@ -90,7 +90,11 @@ public class EnemyManager : MonoBehaviour
             {
                 animator.SetFloat("Speed", 0f);
                 animator.SetTrigger("Attack");
-                //SFXManager.instance.enemyWepSwing.Play();
+                if(SFXManager.instance.enemyWepSwing.isPlaying == false)
+                {
+                    SFXManager.instance.enemyWepSwing.Play();
+                }
+                
             }
             else
             {

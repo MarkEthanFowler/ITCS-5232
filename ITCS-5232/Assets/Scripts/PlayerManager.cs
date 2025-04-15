@@ -65,8 +65,15 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            //SFXManager.instance.playerAttackGrunt.Play();
-            //SFXManager.instance.playerWepSwing.Play();
+            if(SFXManager.instance.playerAttackGrunt.isPlaying == false)
+            {
+                SFXManager.instance.playerAttackGrunt.Play();
+            }
+            if(SFXManager.instance.playerWepSwing.isPlaying == false)
+            {
+                SFXManager.instance.playerWepSwing.Play();
+            }
+            
             animator.SetTrigger("Attack");
         }
 
