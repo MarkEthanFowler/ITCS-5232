@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour
         {
             return;
         }
-        for (int i = 0; i < GameManager.instance.enemyList.Capacity; i++)
+        for (int i = 0; i < GameManager.instance.enemyList.Count; i++)
         {
             if (Vector3.Distance(GameManager.instance.enemyList[i].transform.position, playerTransform.position) < attackDistance)
             {
