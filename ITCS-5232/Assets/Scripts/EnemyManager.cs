@@ -154,4 +154,20 @@ public class EnemyManager : MonoBehaviour
         }
 
     }
+
+    public void EnemyAttackSoundEffects()
+    {
+        if (SFXManager.instance.playerAttackGrunt.isPlaying == false)
+        {
+            SFXManager.instance.enemyWepHit.Play();
+        }
+        for(int i = 0; i < SFXManager.instance.playerHitSound.Length; i++)
+        {
+            if (SFXManager.instance.playerHitSound[i].isPlaying == false)
+            {
+                SFXManager.instance.playerHitSound[UnityEngine.Random.Range(0, SFXManager.instance.playerHitSound.Length)].Play();
+            }
+        }
+        
+    }
 }

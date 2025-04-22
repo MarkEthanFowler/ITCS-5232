@@ -66,15 +66,6 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if(SFXManager.instance.playerAttackGrunt.isPlaying == false)
-            {
-                SFXManager.instance.playerAttackGrunt.Play();
-            }
-            if(SFXManager.instance.playerWepSwing.isPlaying == false)
-            {
-                SFXManager.instance.playerWepSwing.Play();
-            }
-            
             animator.SetTrigger("Attack");
         }
 
@@ -135,4 +126,15 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void PlayerAttackSoundEffects()
+    {
+        if (SFXManager.instance.playerAttackGrunt.isPlaying == false)
+        {
+            SFXManager.instance.playerAttackGrunt.Play();
+        }
+        if (SFXManager.instance.playerWepSwing.isPlaying == false)
+        {
+            SFXManager.instance.playerWepSwing.Play();
+        }
+    }
 }
