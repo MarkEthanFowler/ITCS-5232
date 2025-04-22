@@ -11,31 +11,34 @@ public class EnemyManager : MonoBehaviour
     private Transform target;
     private float rotationSpeed;
     private float radiusOfSatisfaction;
-    private float attackHitRange;
+    
     private float enemySpeed;
-    Rigidbody rigidbody;
     private float currentHealth;
     private float maxHealth;
-    private int damagePlayer;
+    
     private float yOffset;
     private bool isDead;
     public AudioClip test;
     private WaitForSeconds discardBodyTimer;
 
+    private float attackHitRange;
+    private int damagePlayer;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
         SetTarget(GameManager.instance.player.playerTransform);
         rotationSpeed = 5f;
         radiusOfSatisfaction = 5f;
-        attackHitRange = 2f;
+        
         enemySpeed = 1f;
         currentHealth = 100;
         maxHealth = 100;
+
         damagePlayer = -5;
-        
+        attackHitRange = 2f;
+
         ChangeHealthOfEnemy(0);
         isDead = false;
         discardBodyTimer = new WaitForSeconds(10f);
@@ -107,19 +110,7 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    public void CheckHit()
-    {
-        if(target != null)
-        {
-            if (Vector3.Distance(trans.position, target.position) < attackHitRange)
-            {
-                SFXManager.instance.enemyWepHit.Play();
-                GameManager.instance.player.ChangeHealth(damagePlayer);
-                SFXManager.instance.playerHitSound[UnityEngine.Random.Range(0, SFXManager.instance.playerHitSound.Length)].Play();
-            }
-        }
-        
-    }
+    
 
     public void ChangeHealthOfEnemy(int hp)
     {
@@ -130,9 +121,7 @@ public class EnemyManager : MonoBehaviour
             currentHealth = maxHealth;
         }
         if(currentHealth <= 0)
-        {
-            //Destroy(this);
-            //Destroy(gameObject);  
+        { 
             GameManager.instance.enemyList.Remove(this);
             animator.SetFloat("Speed", 0f);
             animator.SetTrigger("Dead");
@@ -149,6 +138,20 @@ public class EnemyManager : MonoBehaviour
 
         Destroy(this);
         Destroy(gameObject);
+
+    }
+
+    public void CheckHitOnPlayer()
+    {
+        if (target != null)
+        {
+            if (Vector3.Distance(trans.position, target.position) < attackHitRange)
+            {
+                SFXManager.instance.enemyWepHit.Play();
+                GameManager.instance.player.ChangeHealth(damagePlayer);
+                SFXManager.instance.playerHitSound[UnityEngine.Random.Range(0, SFXManager.instance.playerHitSound.Length)].Play();
+            }
+        }
 
     }
 }

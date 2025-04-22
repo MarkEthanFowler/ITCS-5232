@@ -32,6 +32,7 @@ public class PlayerManager : MonoBehaviour
         rotationSpeed = 5f;
         currentHealth = 100;
         maxHealth = 100;
+
         attackDistance = 5f;
 
         damageEnemy = -100;
@@ -117,7 +118,7 @@ public class PlayerManager : MonoBehaviour
         GUIManager.instance.UpdateHealthBar(currentHealth / maxHealth);
     }
 
-    public void CheckHitOfPlayer()
+    public void CheckHit()
     {
         if (GameManager.instance.enemyList.Capacity == 0)
         {
@@ -133,5 +134,5 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    
+
 }

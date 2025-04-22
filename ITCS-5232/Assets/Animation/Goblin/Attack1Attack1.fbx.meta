@@ -68,7 +68,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.3240592
-        functionName: CheckHit
+        functionName: CheckHitOnPlayer
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
