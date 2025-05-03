@@ -93,10 +93,6 @@ public class EnemyManager : MonoBehaviour
             {
                 animator.SetFloat("Speed", 0f);
                 animator.SetTrigger("Attack");
-                if(SFXManager.instance.enemyWepSwing.isPlaying == false)
-                {
-                    SFXManager.instance.enemyWepSwing.Play();
-                }
                 
             }
             else
@@ -146,9 +142,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (Vector3.Distance(trans.position, target.position) < attackHitRange)
             {
-                SFXManager.instance.enemyWepHit.Play();
                 GameManager.instance.player.ChangeHealth(damagePlayer);
-                SFXManager.instance.playerHitSound[UnityEngine.Random.Range(0, SFXManager.instance.playerHitSound.Length)].Play();
             }
         }
 

@@ -117,6 +117,7 @@ public class PlayerManager : MonoBehaviour
         }
         for (int i = 0; i < GameManager.instance.enemyList.Count; i++)
         {
+            
             if (Vector3.Distance(GameManager.instance.enemyList[i].transform.position, playerTransform.position) < attackDistance)
             {
                 SFXManager.instance.playerWepHit.Play();
