@@ -342,6 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarImg: {fileID: 1147718009}
+  player: {fileID: 68546052}
 --- !u!114 &55249201
 MonoBehaviour:
   m_ObjectHideFlags: 0

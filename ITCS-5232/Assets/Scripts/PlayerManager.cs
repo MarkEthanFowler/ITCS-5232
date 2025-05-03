@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
 
         attackDistance = 5f;
 
-        damageEnemy = -100;
+        damageEnemy = -25;
 
         ChangeHealth(0);
 

@@ -126,8 +126,7 @@ public class EnemyManager : MonoBehaviour
             animator.SetFloat("Speed", 0f);
             animator.SetTrigger("Dead");
             isDead = true;
-            yOffset = trans.position.y * 0.75f;
-            Instantiate(powerUpPrefab, (trans.position + new Vector3(0f, yOffset, 0f)), Quaternion.identity);
+            Instantiate(powerUpPrefab, (trans.position + new Vector3(0f, 3f, 0f)), Quaternion.identity);
             StartCoroutine(RunDiscardBodyTimer());
         }
     }

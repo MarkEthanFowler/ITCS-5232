@@ -9,6 +9,7 @@ public class GUIManager : MonoBehaviour
     public static GUIManager instance;
 
     [SerializeField] private Image healthBarImg;
+    [SerializeField] private PlayerManager player;
 
     private void Awake()
     {
@@ -23,6 +24,13 @@ public class GUIManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(player.GetCurrentHealth() <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     #region Health Bar
     public void UpdateHealthBar(float hpPercentage)
     {
