@@ -156,6 +156,8 @@ MonoBehaviour:
   playerTransform: {fileID: 157894893265484405}
   animator: {fileID: 6111622485836439567}
   hammerHead: {fileID: 3469996049062800982}
+  damageEnemy: 0
+  levelName: Lose Menu
 --- !u!4 &4802111952951274830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5124756129594994896, guid: 5b93642c86b618d46a5fae9df7bfd585, type: 3}
