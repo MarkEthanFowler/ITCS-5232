@@ -43,10 +43,10 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if(player.GetCurrentHealth() == 0)
+        /*if(player.GetCurrentHealth() == 0)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
 
     public IEnumerator RunEnemySpawnTimer()

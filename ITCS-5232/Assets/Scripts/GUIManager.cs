@@ -26,10 +26,10 @@ public class GUIManager : MonoBehaviour
 
     private void Update()
     {
-        if(player.GetCurrentHealth() <= 0)
+        /*if(player.GetCurrentHealth() <= 0)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
     #region Health Bar
     public void UpdateHealthBar(float hpPercentage)
