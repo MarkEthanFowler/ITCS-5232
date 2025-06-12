@@ -2462,8 +2462,13 @@ MonoBehaviour:
   StableMovementSharpness: 15
   OrientationSharpness: 10
   MaxAirMoveSpeed: 10
-  AirAccelerationSpeed: 5
+  AirAccelerationSpeed: 1
   Drag: 0.1
+  AllowJumpingWhenSliding: 1
+  AllowDoubleJump: 1
+  JumpSpeed: 10
+  JumpPreGroundingGraceTime: 0.1
+  JumpPostGroundingGraceTime: 0.1
   RotationObstruction: 0
   Gravity: {x: 0, y: -30, z: 0}
   MeshRoot: {fileID: 407656279}

@@ -81,6 +81,7 @@ public class MyPlayer : MonoBehaviour
         characterInputs.MoveAxisForward = Input.GetAxisRaw(VerticalInput);
         characterInputs.MoveAxisRight = Input.GetAxisRaw(HorizontalInput);
         characterInputs.CameraRotation = OrbitCamera.Transform.rotation;
+        characterInputs.JumpDown = Input.GetKeyDown(KeyCode.Space);
 
         // Apply inputs to character
         Character.SetInputs(ref characterInputs);
