@@ -85,5 +85,12 @@ public class MyPlayer : MonoBehaviour
 
         // Apply inputs to character
         Character.SetInputs(ref characterInputs);
+
+        /*//apply impulse 
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Character.motor.ForceUnground(0.1f);
+            Character.AddVelocity(Vector3.one * 10f);
+        }*/
     }
 }

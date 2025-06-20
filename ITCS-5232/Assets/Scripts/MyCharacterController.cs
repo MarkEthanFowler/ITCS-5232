@@ -35,6 +35,7 @@ public class MyCharacterController : MonoBehaviour, ICharacterController//interf
     public bool RotationObstruction;
     public Vector3 Gravity = new Vector3(0, -30f, 0);
     public Transform MeshRoot;
+    public bool OrientTowardsGravity = true;
 
     private Vector3 _moveInputVector;
     private Vector3 _lookInputVector;
@@ -45,7 +46,9 @@ public class MyCharacterController : MonoBehaviour, ICharacterController//interf
     private float _timeSinceJumpRequested = Mathf.Infinity;
     private float _timeSinceLastAbleToJump = 0f;
     private bool _doubleJumpConsumed = false;
+    private Vector3 _internalVelocityAdd = Vector3.zero;
 
+    /// This is called every frame by MyPlayer in order to tell the character what its inputs are
     public void SetInputs(ref PlayerCharacterInputs inputs)
     {
         // Clamp input
@@ -99,6 +102,11 @@ public class MyCharacterController : MonoBehaviour, ICharacterController//interf
 
             // Set the current rotation (which will be used by the KinematicCharacterMotor)
             currentRotation = Quaternion.LookRotation(smoothedLookInputDirection, motor.CharacterUp);
+        }
+
+        if(OrientTowardsGravity)
+        {
+            currentRotation = Quaternion.FromToRotation((currentRotation * Vector3.up), -Gravity) * currentRotation;
         }
     }
 
@@ -185,6 +193,11 @@ public class MyCharacterController : MonoBehaviour, ICharacterController//interf
                 _jumpedThisFrame = true;
             }
         }
+        if(_internalVelocityAdd.sqrMagnitude > 0f)
+        {
+            currentVelocity += _internalVelocityAdd;
+            _internalVelocityAdd = Vector3.zero;
+        }
     }
 
     // This is called after the motor has finished everything in its update
@@ -244,7 +257,29 @@ public class MyCharacterController : MonoBehaviour, ICharacterController//interf
     // This is called after the motor has finished its ground probing, but before PhysicsMover/Velocity/etc.... handling
     public void PostGroundingUpdate(float deltaTime)
     {
+        if(motor.GroundingStatus.IsStableOnGround && !motor.LastGroundingStatus.IsStableOnGround)
+        {
+            OnLanded();
+        }
+        else
+        {
+            OnLeaveStableGround();
+        }
+    }
+
+    protected void OnLanded()
+    {
         
+    }
+
+    protected void OnLeaveStableGround()
+    {
+
+    }
+
+    public void AddVelocity(Vector3 velocity)
+    {
+        _internalVelocityAdd += velocity;
     }
 
     // This is called by the motor when it is detecting a collision that did not result from a "movement hit".
